@@ -1,0 +1,12 @@
+ALTER SESSION SET CONTAINER=XEPDB1;
+
+conn user1/user1@XEPDB1
+show user
+
+CREATE OR REPLACE TRIGGER trg_event_update
+BEFORE UPDATE ON event
+FOR EACH ROW
+BEGIN
+    :NEW.updated_at := CURRENT_TIMESTAMP;
+END;
+/

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  oracle:
+    image: oracle/database:21.3.0-xe
+    container_name: oracle21db
+    ports:
+      - "1521:1521"
+      - "8080:8080"
+    environment:
+      - ORACLE_PASSWORD=password
+      - ORACLE_SID=XE
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+      - ./script/startup:/opt/oracle/scripts/startup
+      - ./script/setup:/opt/oracle/scripts/setup
+volumes:
+  oracle_data:
+  init_sql_script:
